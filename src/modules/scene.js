@@ -338,7 +338,8 @@ module.exports = function(RANDO, BABYLON) {
             this._pois_data.push ({
                 'coordinates' : {
                     'x': coordinates.x,
-                    'z': coordinates.y
+                    'z': coordinates.y,
+                    'y': feature.geometry.coordinates[2]
                 },
                 'properties' : feature.properties
             });
