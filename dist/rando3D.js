@@ -18810,6 +18810,15 @@ module.exports = function(RANDO, BABYLON) {
 
     /* Constructor */
     RANDO.Poi = function (id, data, offsets, scene) {
+
+        var type = typeof data.properties.type !== "number"
+            ? data.properties.type
+            : {
+                id: data.properties.type,
+                pictogram: data.properties.type_pictogram,
+                label: data.properties.type_label
+            };
+
         this._id            = id
         this._position      = {
             'x' : data.coordinates.x + offsets.x,
@@ -18817,8 +18826,8 @@ module.exports = function(RANDO, BABYLON) {
             'z' : data.coordinates.z + offsets.z
         };
         this._name          = data.properties.name;
-        this._type          = data.properties.type;
-        this._elevation     = data.properties.elevation || data.properties.max_elevation;
+        this._type          = type;
+        this._elevation     = data.properties.elevation || data.properties.max_elevation || data.coordinates.y;
         this._description   = data.properties.description || RANDO.SETTINGS.NO_DESCRIPTION_MESSAGE;
         this._scene         = scene;
 
